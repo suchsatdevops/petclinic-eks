@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS dev_petclinic1;
+CREATE DATABASE IF NOT EXISTS petclinic;
 
-ALTER DATABASE dev_petclinic1
+ALTER DATABASE petclinic
   DEFAULT CHARACTER SET utf8
   DEFAULT COLLATE utf8_general_ci;
 
@@ -59,3 +59,4 @@ CREATE TABLE IF NOT EXISTS visits (
   description VARCHAR(255),
   FOREIGN KEY (pet_id) REFERENCES pets(id)
 ) engine=InnoDB;
+© 2021 GitHub, Inc.
