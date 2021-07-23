@@ -1,6 +1,6 @@
 FROM maven:3.5-jdk-8 as BUILD
 COPY . /usr/src/
-WORKDIR /usr/src/pom.xml
+WORKDIR /usr/src/
 RUN mvn clean package
 
 FROM tomcat
