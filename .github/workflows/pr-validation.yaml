@@ -18,17 +18,24 @@ jobs:
       id: files
       uses: jitterbit/get-changed-files@v1
 
-    - name: Get changed files in the messages folder
-      id: changed-files-specific
-      uses: jitterbit/changed-files@v34
-      with:
-        files: |
-          messages/**
+    #- name: Get changed files in the messages folder
+      #id: changed-files-specific
+      #uses: jitterbit/changed-files@v34
+      #with:
+        #files: |
+          #messages/**
     
     - name: Add number of reviewers
       run: |
-        all_files="${{ steps.changed-files-specific.outputs.any_changed }}"
+        all_files="${{ steps.files.outputs.all }}"
         if [[ ! -z "$all_files" ]];
         then
-          number_of_reviewers: 2
+          for file in $all_files; do
+            if [[ ( "$(basename $file)" == "*.tf" || "$(basename $file)" == "*.hcl" ) && -n $(echo "$file" | grep "src/main") ]];
+            then
+              number_of_reviewers: 2
+            else
+              number_of_reviewers: 2
+            fi
+          done
         fi
