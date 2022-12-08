@@ -20,22 +20,13 @@ jobs:
 
     - name: Get changed files in the messages folder
       id: changed-files-specific
-      uses: jitterbit/changed-files@v34
+      uses: tj-actions/changed-files@v34
       with:
         files: |
           messages/**
     
-    - name: Add number of reviewers
+    - name: Run step if any file(s) in the docs folder change
+      if: steps.changed-files-specific.outputs.any_changed == 'true'
       run: |
-        all_files="${{ steps.changed-files-specific.outputs.all }}"
-        if [[ ! -z "$all_files" ]];
-        then
-          for file in $all_files; do
-            if [[ ( "$file" == "test.tf" || "$file" == "test.hcl" ) && -n $(echo "$file" | grep "src/main") ]];
-            then
-              numberOfReviewers: 2
-            else
-              numberOfReviewers: 0
-            fi
-          done
-        fi
+        echo "One or more files in the docs folder has changed."
+        echo "List all the files that have changed: ${{ steps.changed-files-specific.outputs.all_changed_files }}"
