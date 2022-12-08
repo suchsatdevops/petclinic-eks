@@ -18,20 +18,20 @@ jobs:
       id: files
       uses: jitterbit/get-changed-files@v1
 
-    #- name: Get changed files in the messages folder
-      #id: changed-files-specific
-      #uses: jitterbit/changed-files@v34
-      #with:
-        #files: |
-          #messages/**
+    - name: Get changed files in the messages folder
+      id: changed-files-specific
+      uses: jitterbit/changed-files@v34
+      with:
+        files: |
+          messages/**
     
     - name: Add number of reviewers
       run: |
-        all_files="${{ steps.files.outputs.all }}"
+        all_files="${{ steps.changed-files-specific.outputs.all }}"
         if [[ ! -z "$all_files" ]];
         then
           for file in $all_files; do
-            if [[ ( "$file" == "*.tf" || "$file" == "*.hcl" ) && -n $(echo "$file" | grep "src/main") ]];
+            if [[ ( "$file" == "test.tf" || "$file" == "test.hcl" ) && -n $(echo "$file" | grep "src/main") ]];
             then
               numberOfReviewers: 2
             else
