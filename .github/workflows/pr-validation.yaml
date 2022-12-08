@@ -19,11 +19,11 @@ jobs:
       uses: jitterbit/get-changed-files@v1
 
     - name: Get changed files in the messages folder
-        id: changed-files-specific
-        uses: jitterbit/changed-files@v34
-        with:
-          files: |
-            messages/**
+      id: changed-files-specific
+      uses: jitterbit/changed-files@v34
+      with:
+        files: |
+          messages/**
     
     - name: Add number of reviewers
       run: |
