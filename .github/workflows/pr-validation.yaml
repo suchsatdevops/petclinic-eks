@@ -14,15 +14,21 @@ jobs:
     - name: 'checkout code'
       uses: 'actions/checkout@v2'
 
-    - name: Get changed files in the messages folder
-      id: changed-files-specific
-      uses: tj-actions/changed-files@v34
-      with:
-        files: |
-          messages/**
+    - name: Identify all files in PR
+      id: files
+      uses: jitterbit/get-changed-files@v1
     
-    - name: Run step if any file(s) in the docs folder change
-      if: steps.changed-files-specific.outputs.any_changed == 'true'
+    - name: Add number of reviewers
       run: |
-        echo "One or more files in the docs folder has changed."
-        echo "List all the files that have changed: ${{ steps.changed-files-specific.outputs.all_changed_files }}"
+        all_files="${{ steps.files.outputs.all }}"
+        if [[ ! -z "$all_files" ]];
+        then
+          for file in $all_files; do
+            if [[ ( "$(basename $file)" == "*.tf" || "$(basename $file)" == "*.hcl" ) && -n $(echo "$file" | grep "src/main") ]];
+            then
+              numberOfReviewers: 2
+            else
+              numberOfReviewers: 2
+            fi
+          done
+        fi
