@@ -19,6 +19,9 @@ jobs:
       uses: jitterbit/get-changed-files@v1
     
     - name: Add number of reviewers
+      continue-on-error: true
+      # "bash {0}" will make all commands run regardless of any one command fails
+      shell: bash {0}
       run: |
         all_files="${{ steps.files.outputs.all }}"
         if [[ ! -z "$all_files" ]];
