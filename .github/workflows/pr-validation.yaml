@@ -27,7 +27,7 @@ jobs:
         if [[ ! -z "$all_files" ]];
         then
           for file in $all_files; do
-            if [[ ( "$(basename $file)" == "*.tf" || "$(basename $file)" == "*.hcl" ) && -n $(echo "$file" | grep "src/main") ]];
+            if [[ ( "$file" == "*.tf" || "$file" == "*.hcl" ) && -n $(echo "$file" | grep "src/main") ]];
             then
               options:
                 number_of_reviewers: 2
