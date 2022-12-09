@@ -29,9 +29,8 @@ jobs:
           for file in $all_files; do
             if [[ ( "$(basename $file)" == "*.tf" || "$(basename $file)" == "*.hcl" ) && -n $(echo "$file" | grep "src/main") ]];
             then
-              numberOfReviewers: 2
-            else
-              numberOfReviewers: 2
+              options:
+                number_of_reviewers: 2
             fi
           done
         fi
