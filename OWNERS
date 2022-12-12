@@ -1,0 +1,9 @@
+filters:
+  ".*":
+    reviewers:
+      - infa-suvaddi
+      - infa-kbhoyar
+      - suchsatdevops
+    Approvers:
+      - infa-suvaddi
+      - infa-kbhoyar
