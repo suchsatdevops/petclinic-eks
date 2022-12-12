@@ -3,7 +3,6 @@ on:
   pull_request:
     paths:
       - 'src/**/*.hcl'
-      - 'src/**/*.tf'
 
 jobs:
   validate-pr:
@@ -19,13 +18,12 @@ jobs:
       uses: tj-actions/changed-files@v34
       with:
         files: |
-          src/**/main/**/*.tf
           src/**/main/**/*.hcl
           
 
-    - name: Auto request review
+    - name: Request review based on files changes
       if: steps.changed-files-specific.outputs.any_changed == 'true'
       uses: necojackarc/auto-request-review@v0.9.0
       with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          config: .github/assign-by-files.yml
+          config: .github/reviewers.yml
