@@ -1,8 +1,10 @@
 files:
   '**/*.tf':
-    - team:ct-eng-ops # GitHub team
+    - suchsatdevops
+    - kiranb2601 # GitHub team
   '**/*.hcl':
-    - team:ct-eng-ops
+    - suchsatdevops
+    - kiranb2601
 
 options:
   number_of_reviewers: 2
