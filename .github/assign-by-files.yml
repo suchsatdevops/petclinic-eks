@@ -1,10 +1,10 @@
 files:
   '**/*.tf':
     - suchsatdevops
-    - kiranb2601 # GitHub team
+    - Kiran-2601 # GitHub team
   '**/*.hcl':
     - suchsatdevops
-    - kiranb2601
+    - Kiran-2601
 
 options:
   number_of_reviewers: 2
