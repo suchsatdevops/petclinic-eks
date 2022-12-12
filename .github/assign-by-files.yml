@@ -1,8 +1,10 @@
 files:
   '**/*.tf':
-    - team:ct-eng-ops
+    - suchsatdevops
+    - Kiran-2601
   '**/*.hcl':
-    - team:ct-eng-ops
+    - suchsatdevops
+    - Kiran-2601
 
 options:
   number_of_reviewers: 2
