@@ -18,7 +18,7 @@ jobs:
       id: files
       uses: jitterbit/get-changed-files@v1
     
-    - name: Add number of reviewers
+    - name: Auto assign number of reviewers based on files changed
       continue-on-error: true
       # "bash {0}" will make all commands run regardless of any one command fails
       shell: bash {0}
