@@ -3,10 +3,12 @@ files:
     - suchsatdevops
     - TheDirewolf1326
     - matheusalano
+    - Kiran-2601
   '**/*.hcl':
     - suchsatdevops
     - TheDirewolf1326
     - matheusalano
+    - Kiran-2601
 
 #options:
  # number_of_reviewers: 2
