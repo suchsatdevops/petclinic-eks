@@ -1,12 +1,13 @@
 files:
   '**/*.tf':
     - suchsatdevops
-    - Kiran-2601
+    - TheDirewolf1326
     - matheusalano
   '**/*.hcl':
     - suchsatdevops
-    - Kiran-2601
+    - TheDirewolf1326
     - matheusalano
 
-options:
-  number_of_reviewers: 2
+#options:
+ # number_of_reviewers: 2
+numberOfReviewers: 2
