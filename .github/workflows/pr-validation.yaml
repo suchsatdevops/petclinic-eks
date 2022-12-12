@@ -19,7 +19,6 @@ jobs:
       uses: jitterbit/get-changed-files@v1
     
     - name: Auto assign number of reviewers based on files changed
-      uses: shufo/auto-assign-reviewer-by-files@v1.1.4
       continue-on-error: true
       # "bash {0}" will make all commands run regardless of any one command fails
       shell: bash {0}
