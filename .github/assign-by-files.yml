@@ -1,2 +1,8 @@
+files:
+  '**/*.tf':
+    - team:ct-eng-ops # GitHub team
+  '**/*.hcl':
+    - team:ct-eng-ops
+
 options:
-  number_of_reviewers: 3
+  number_of_reviewers: 2
