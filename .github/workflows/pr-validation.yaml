@@ -14,23 +14,17 @@ jobs:
     - name: 'checkout code'
       uses: 'actions/checkout@v2'
 
-    - name: Identify all files in PR
-      id: files
-      uses: jitterbit/get-changed-files@v1
-    
-    - name: Auto assign number of reviewers based on files changed
-      continue-on-error: true
-      # "bash {0}" will make all commands run regardless of any one command fails
-      shell: bash {0}
-      run: |
-        all_files="${{ steps.files.outputs.all }}"
-        if [[ ! -z "$all_files" ]];
-        then
-          for file in $all_files; do
-            if [[ ( "$(basename $file)" == "test.tf" || "$(basename $file)" == "test.hcl" ) && -n $(echo "$file" | grep "src/main") ]];
-            then
-              config: ".github/assign-by-files.yml"
-              token: ${{ secrets.GITHUB_TOKEN }}
-            fi
-          done
-        fi
+    - name: Get changed files in the docs folder
+      id: changed-files-specific
+      uses: tj-actions/changed-files@v34
+      with:
+        files: |
+          src/**/*.hcl
+          src/**/*.tf
+
+    - name: Auto request review
+      if: steps.changed-files-specific.outputs.any_changed == 'true'
+      uses: necojackarc/auto-request-review@v0.9.0
+      with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          config: .github/assign-by-files.yml
