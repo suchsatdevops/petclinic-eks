@@ -1,4 +1,2 @@
-"**/*.hcl":
-  - numberOfReviewers: 2
-  
-numberOfReviewers: 2
+options:
+  number_of_reviewers: 3
