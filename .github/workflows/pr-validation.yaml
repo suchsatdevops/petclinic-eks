@@ -2,8 +2,8 @@ name: 'Validate PR file'
 on:
   pull_request:
     paths:
-      - 'clusters/**/*.hcl'
-      - 'clusters/**/*.tf'
+      - 'src/**/*.hcl'
+      - 'src/**/*.tf'
 
 jobs:
   validate-pr:
@@ -19,7 +19,7 @@ jobs:
       uses: tj-actions/changed-files@v34
       with:
         files: |
-          clusters/**/terraform/**
+          src/**/main/**
           
 
     - name: Auto request review
