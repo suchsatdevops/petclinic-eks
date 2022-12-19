@@ -1,10 +1,15 @@
-addReviewers: true
-
+  
 reviewers:
-  - suchsatdevops # username
-  - infa-suvaddi
-  - infa-kbhoyar
-  - infa-svineethareddy
+  groups:
+    engineers:
+      - infa-suvaddi
+      - infa-kbhoyar
+      - infa-svineethareddy
+      
+  per_author:
+    engineers:
+      - engineers
   
     
-numberOfReviewers: 2
+options:
+  number_of_reviewers: 2
