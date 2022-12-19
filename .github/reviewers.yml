@@ -1,13 +1,10 @@
 addReviewers: true
 
-groups:
-    repository-owners:
-      - suchsatdevops # username
-      - infa-suvaddi
-      - infa-kbhoyar
 reviewers:
-  # The default reviewers
-  defaults:
-    - repository-owners
+  - suchsatdevops # username
+  - infa-suvaddi
+  - infa-kbhoyar
+  - infa-svineethareddy
+  
     
 numberOfReviewers: 2
