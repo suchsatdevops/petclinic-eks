@@ -1,4 +1,7 @@
-  
+files:
+  '**/*.hcl':
+    - engineers
+
 reviewers:
   groups:
     engineers:
@@ -13,3 +16,4 @@ reviewers:
     
 options:
   number_of_reviewers: 2
+  enable_group_assignment: true
