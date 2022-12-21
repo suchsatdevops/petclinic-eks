@@ -1,17 +1,20 @@
-approvals:
-  minimum: 2 
+files:
+  '**/*.hcl':
+    - engineers
+
+reviewers:
   groups:
-    - name: frontend
-      minimum: 2
-      from:
-        - infa-suvaddi
-        - infa-kbhoyar
-        - infa-pthimmap
- 
- reviewers:
-   groups:
-     frontend:
-       - infa-suvaddi
-       - infa-kbhoyar
-       #- infa-svineethareddy
-       - infa-pthimmap
+    engineers:
+      - infa-suvaddi
+      - infa-kbhoyar
+      #- infa-svineethareddy
+      - infa-pthimmap
+      
+  per_author:
+    engineers:
+      - engineers
+  
+    
+options:
+  number_of_reviewers: 2
+  enable_group_assignment: true
