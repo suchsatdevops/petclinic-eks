@@ -1,21 +1,2 @@
-files:
-  '**/*.hcl':
-    - frontend
-
 approvals:
-  minimum: 2 
-  groups:
-    - name: frontend
-      minimum: 2
-      from:
-        - infa-suvaddi
-        - infa-kbhoyar
-        - infa-pthimmap
-
-reviewers:
-   groups:
-     frontend:
-       - infa-suvaddi
-       - infa-kbhoyar
-       #- infa-svineethareddy
-       - infa-pthimmap
+  minimum: 2
