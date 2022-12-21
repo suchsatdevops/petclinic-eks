@@ -7,3 +7,11 @@ approvals:
         - infa-suvaddi
         - infa-kbhoyar
         - infa-pthimmap
+
+reviewers:
+   groups:
+     frontend:
+       - infa-suvaddi
+       - infa-kbhoyar
+       #- infa-svineethareddy
+       - infa-pthimmap
