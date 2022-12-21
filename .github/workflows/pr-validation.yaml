@@ -21,9 +21,17 @@ jobs:
           src/**/main/**/*.hcl
           
 
-    - name: Request review based on files changes
+   # - name: Request review based on files changes
+    #  if: steps.changed-files-specific.outputs.any_changed == 'true'
+    #  uses: necojackarc/auto-request-review@v0.9.0
+     # with:
+         # token: ${{ secrets.GITHUB_TOKEN }}
+         # config: .github/reviewers.yml
+  
+    - name: Request for minimum 2 approvals
       if: steps.changed-files-specific.outputs.any_changed == 'true'
-      uses: necojackarc/auto-request-review@v0.9.0
+      uses: octodemo/pr-gatekeeper@v1.0
       with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          config: .github/reviewers.yml
+        token: ${{ secrets.GITHUB_TOKEN }}
+        config: .github/reviewers.yml
+      
