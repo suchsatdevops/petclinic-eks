@@ -19,11 +19,17 @@ jobs:
       with:
         files: |
           src/**/main/**/*.txt
+    - name: Generate token
+      id: generate_token
+      uses: tibdex/github-app-token@v1
+      with:
+        app_id: ${{ secrets.APP_ID }}
+        private_key: ${{ secrets.APP_PRIVATE_KEY }}
           
     - name: Request review based on files changes
       if: steps.changed-files-specific.outputs.any_changed == 'true'
       uses: trstringer/manual-approval@v1
       with:
-          secret: ${{ github.TOKEN }}
-          approvers: infa-suvaddi,infa-kbhoyar,infa-pthimmap
-          minimum-approvals: 2
+        secret: ${{ steps.generate_token.outputs.token }}
+        approvers: infa-suvaddi,infa-kbhoyar,infa-pthimmap
+        minimum-approvals: 2
