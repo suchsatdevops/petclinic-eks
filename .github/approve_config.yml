@@ -1,3 +1,7 @@
+files:
+  '**/*.hcl':
+    - frontend
+
 approvals:
   minimum: 2 
   groups:
