@@ -1,6 +1,7 @@
 approvals:
   minimum: 2 
   groups:
+    - name: frontend
       from:
         - infa-suvaddi
         - infa-kbhoyar
