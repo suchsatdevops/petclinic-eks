@@ -33,5 +33,4 @@ jobs:
       uses: octodemo/pr-gatekeeper@v1.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        config: .github/reviewers.yml
       
