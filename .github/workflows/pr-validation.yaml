@@ -40,7 +40,8 @@ jobs:
          # config: .github/reviewers.yml
   
     - name: Request for minimum 2 approvals
-      if: steps.changed-files-specific.outputs.any_changed == 'true'
+      #if: steps.changed-files-specific.outputs.any_changed == 'true'
+      if: always()
       uses: octodemo/pr-gatekeeper@v1.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
