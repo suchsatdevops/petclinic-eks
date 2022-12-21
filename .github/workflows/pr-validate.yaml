@@ -26,4 +26,4 @@ jobs:
       with:
           token: ${{ secrets.GITHUB_TOKEN }}
           approvers: infa-suvaddi,infa-kbhoyar,infa-pthimmap
-          minimum-approvals: 1
+          minimum-approvals: 2
