@@ -1,20 +1,3 @@
-files:
-  '**/*.hcl':
-    - engineers
-
-reviewers:
-  groups:
-    engineers:
-      - infa-suvaddi
-      - infa-kbhoyar
-      #- infa-svineethareddy
-      - infa-pthimmap
-      
-  per_author:
-    engineers:
-      - engineers
-  
-    
-options:
-  number_of_reviewers: 2
-  enable_group_assignment: true
+approvals:
+  # check will fail if there is no approval
+  minimum: 2
