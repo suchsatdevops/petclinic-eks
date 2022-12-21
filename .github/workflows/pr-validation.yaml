@@ -1,6 +1,16 @@
 name: 'Validate PR file'
 on:
   pull_request:
+    types:
+      [
+        assigned,
+        unassigned,
+        opened,
+        reopened,
+        synchronize,
+        review_requested,
+        review_request_removed
+      ]
     paths:
       - 'src/**/*.hcl'
 
