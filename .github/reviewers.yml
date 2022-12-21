@@ -1,2 +1,7 @@
 approvals:
   minimum: 2 
+  groups:
+      from:
+        - infa-suvaddi
+        - infa-kbhoyar
+        - infa-pthimmap
