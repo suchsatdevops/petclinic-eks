@@ -7,8 +7,8 @@ reviewers:
     engineers:
       - infa-suvaddi
       - infa-kbhoyar
-      #- infa-svineethareddy
-      - infa-pthimmap
+      - infa-svineethareddy
+      #- infa-pthimmap
       
   per_author:
     engineers:
