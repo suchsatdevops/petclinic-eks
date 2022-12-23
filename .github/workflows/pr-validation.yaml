@@ -1,6 +1,8 @@
 name: 'Minimum number of approvers'
 on:
   pull_request_review:
+    paths:
+      - 'src/**/*.hcl'
   pull_request:
     paths:
       - 'src/**/*.hcl'
