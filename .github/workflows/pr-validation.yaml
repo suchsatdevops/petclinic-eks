@@ -14,12 +14,12 @@ jobs:
     - name: 'checkout code'
       uses: 'actions/checkout@v2'
       
-    - name: Identify all files in PR
-      id: files
-      uses: jitterbit/get-changed-files@v1
+    #- name: Identify all files in PR
+      #id: files
+      #uses: jitterbit/get-changed-files@v1
 
     - name: Request for minimum 2 approvals
-      if: contains('["test.hcl"]', "${{ steps.files.outputs.all }}")
+      #if: contains('["test.hcl"]', "${{ steps.files.outputs.all }}")
       uses: octodemo/pr-gatekeeper@v1.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
