@@ -19,6 +19,7 @@ jobs:
       #uses: jitterbit/get-changed-files@v1
 
     - name: Request for minimum 2 approvals
+      continue-on-error: true
       #if: contains('["test.hcl"]', "${{ steps.files.outputs.all }}")
       uses: octodemo/pr-gatekeeper@v1.0
       with:
