@@ -1,0 +1,5 @@
+name: 'Create PR file'
+on:
+  pull_request:
+    paths:
+      - 'src/**/*.hcl'
