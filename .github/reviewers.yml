@@ -1,17 +1,17 @@
 files:
   '**/*.hcl':
-    - engineers
+    - ct-eng-ops
 
 reviewers:
   groups:
-    engineers:
+    ct-eng-ops:
       - infa-suvaddi
       - infa-kbhoyar
       - infa-svineethareddy
       
-  per_author:
-    engineers:
-      - engineers
+  #per_author:
+   # engineers:
+    #  - engineers
   
     
 options:
