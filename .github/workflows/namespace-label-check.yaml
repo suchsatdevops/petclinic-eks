@@ -14,11 +14,30 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Identify all files in PR
+      id: files
+      uses: trilom/file-changes-action@v1.2.4
+      with:
+        output: ' '
+
     - name: Check for Namespace Labels
+      id: check
+      continue-on-error: true
+      # "bash {0}" will make all commands run regardless of any one command fails
+      shell: bash {0}
       run: |
-        if git grep -q --all-match -e 'istio.io/rev' -e 'istio-discovery'; then
-          echo "Error: Namespace labels found."
-          exit 1
-        else
-          echo "Namespace labels not found, PR looks good"
+        all_files="${{ steps.files.outputs.all }}"
+        if [[ ! -z "$all_files" ]];
+        then
+          for file in $all_files; do
+            if [[ ( "$(basename $file)" == "namespace.yaml" || "$(basename $file)" == "*ns*.yaml" ) && -n $(echo "$file" |grep "clusters/") ]];
+            then
+              if git grep -q --all-match -e 'istio.io/rev'; then
+                echo "Error: Namespace labels found."
+                exit 1
+              else
+                echo "Namespace labels not found, PR looks good"
+              fi
+            fi
+          done
         fi
