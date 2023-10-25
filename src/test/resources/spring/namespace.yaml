@@ -7,4 +7,3 @@ metadata:
     istio.io/rev: 1-14-3
     be: cloudtrust
     bu: security
-    vaultoss-enabled: "true"
