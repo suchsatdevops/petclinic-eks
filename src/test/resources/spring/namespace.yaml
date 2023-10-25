@@ -5,5 +5,5 @@ metadata:
   name: security-prod-prisma
   labels:
     istio.io/rev: 1-14-3
-    be: cloudtrust
+    be: cloudtrust1
     bu: security11
