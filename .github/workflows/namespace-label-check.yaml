@@ -27,7 +27,7 @@ jobs:
       shell: bash {0}
       run: |
         all_files="${{ steps.files.outputs.all }}"
-        echo $all_files
+        echo "$all_files"
         if [[ ! -z "$all_files" ]];
         then
           for file in $all_files; do
