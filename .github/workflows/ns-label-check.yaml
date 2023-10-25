@@ -32,6 +32,6 @@ jobs:
           ```
     - name: Fail if any istio label is present
       run: |
-        if steps.check-istio-label.outputs.comment != 'No occurrence of ''istio.io/rev'' found in the files.'; then 
+        if: steps.check-istio-label.outputs.comment != 'No occurrence of ''istio.io/rev'' found in the files.'
           exit 1
         fi
