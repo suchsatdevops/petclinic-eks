@@ -1,0 +1,23 @@
+name: Check Istio Revision
+
+on:
+  pull_request:
+    paths:
+      - '**'
+
+jobs:
+  check-istio-rev:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Check for 'istio.io/rev'
+      run: |
+        if grep -rnw -e 'istio.io/rev' .; then
+          echo "Error: 'istio.io/rev' found in the files."
+          exit 1
+        else
+          echo "No occurrence of 'istio.io/rev' found in the files."
+        fi
