@@ -28,7 +28,7 @@ jobs:
         recreate: true
         message: |
           ```
-          echo "istio labels are added in namespace, please remove"
+          istio labels are added in namespace, please remove
           ```
     - name: Fail if any istio label is present
       run: |
