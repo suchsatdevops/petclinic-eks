@@ -4,5 +4,6 @@ kind: Namespace
 metadata:
   name: cdipc-qa-relazpod1
   labels:
+    istio.io/rev: 1-14-3
     be: intcloud
     bu: cdipc
