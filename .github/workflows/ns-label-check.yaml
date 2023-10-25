@@ -17,12 +17,14 @@ jobs:
       run: |
         if grep -r -q "istio.io/rev" ./*; then
           echo "Error: 'istio.io/rev' found in the files."
+          echo "::set-output name=comment::Error: 'istio.io/rev' found in the files."
           exit 1
         else
           echo "No occurrence of 'istio.io/rev' found in the files."
+          echo "::set-output name=comment::No occurrence of 'istio.io/rev' found in the files."
         fi
     - name: Comment on PR
-      if: steps.check-istio-label.outputs.comment != 'No occurrence of 'istio.io/rev' found in the files.'
+      if: steps.check-istio-label.outputs.comment != 'No occurrence of ''istio.io/rev'' found in the files.'
       uses: actions/github-script@v5
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
