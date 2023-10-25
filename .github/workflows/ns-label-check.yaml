@@ -17,21 +17,17 @@ jobs:
       run: |
         if grep -r -q "istio.io/rev" ./*; then
           echo "Error: 'istio.io/rev' found in the files."
-          echo "::set-output name=comment::Error: 'istio.io/rev' found in the files."
           exit 1
         else
           echo "No occurrence of 'istio.io/rev' found in the files."
-          echo "::set-output name=comment::No occurrence of 'istio.io/rev' found in the files."
         fi
-    - name: Comment on PR
-      if: steps.check-istio-label.outputs.comment != 'No occurrence of ''istio.io/rev'' found in the files.'
-      uses: actions/github-script@v5
+
+    - name: Update comment with validation output
+      if: steps.check-istio-label.outputs.comment != "No occurrence of ''istio.io/rev'' found in the files."
+      uses: marocchino/sticky-pull-request-comment@v2
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          github.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: '${{ steps.check-istio-label.outputs.comment }}',
-          })
+        recreate: true
+        message: |
+          ```
+          echo "istio labels are added in namespace, please remove"
+          ```
