@@ -17,7 +17,6 @@ jobs:
       run: |
         if grep -r -q "istio.io/rev" ./*; then
           echo "Error: 'istio.io/rev' found in the files."
-          exit 1
         else
           echo "No occurrence of 'istio.io/rev' found in the files."
         fi
@@ -31,3 +30,8 @@ jobs:
           ```
           echo "istio labels are added in namespace, please remove"
           ```
+    - name: Fail if any istio label is present
+      run: |
+        if steps.check-istio-label.outputs.comment != 'No occurrence of ''istio.io/rev'' found in the files.'; then 
+          exit 1
+        fi
