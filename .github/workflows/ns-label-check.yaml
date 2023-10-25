@@ -27,6 +27,7 @@ jobs:
       with:
         recreate: true
         message: |
+          Validation output, from ${{ github.sha }}, commit by: ${{ github.actor }}.
           ```
           istio labels are added in namespace, please remove
           ```
