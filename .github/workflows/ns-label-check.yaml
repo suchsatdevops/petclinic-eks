@@ -32,7 +32,7 @@ jobs:
           istio labels are added in namespace, please remove
           ```
     - name: Fail if any istio label is present
+      if: steps.check-istio-label.outputs.comment != 'No occurrence of ''istio.io/rev'' found in the files.'
       run: |
-        if: steps.check-istio-label.outputs.comment != 'No occurrence of ''istio.io/rev'' found in the files.'
           exit 1
         fi
