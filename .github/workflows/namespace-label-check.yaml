@@ -16,7 +16,7 @@ jobs:
 
     - name: Check for Namespace Labels
       run: |
-        if git grep -q 'istio.io/rev' && git grep -q 'istio-discovery'; then
+        if git grep -q --all-match -e istio.io/rev -e istio-discovery; then
           echo "Error: Namespace labels found."
           exit 1
         else
