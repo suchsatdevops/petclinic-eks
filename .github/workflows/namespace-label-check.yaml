@@ -1,0 +1,24 @@
+name: 'Namespace Label Check'
+on:
+  pull_request:
+    paths:
+      - 'clusters/**/namespace.yaml'
+      - 'clusters/**/ns*.yaml'
+      - 'clusters/**/*ns*.yaml'
+
+jobs:
+  check-labels:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Check for Namespace Labels
+      run: |
+        if git grep -q 'istio.io/rev' && git grep -q 'istio-discovery'; then
+          echo "Error: Namespace labels found."
+          exit 1
+        else
+          echo "Namespace labels not found, PR looks good"
+        fi
