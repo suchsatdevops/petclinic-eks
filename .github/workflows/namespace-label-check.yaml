@@ -35,7 +35,7 @@ jobs:
             then
               export label=$(cat $file | grep 'istio.io/rev')
               echo $label
-              if $label == istio.io/rev*; then
+              if $label == "istio.io/rev*"; then
                 echo "Error: Namespace labels found."
                 exit 1
               else
