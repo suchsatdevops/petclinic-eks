@@ -32,7 +32,7 @@ jobs:
           for file in $all_files; do
             if [[ ( "$(basename $file)" == "namespace.yaml" || "$(basename $file)" == "*ns*.yaml" ) && -n $(echo "$file" |grep "clusters/") ]];
             then
-              if git grep -q --all-match -e 'istio.io/rev'; then
+              if git grep -e 'istio.io/rev'; then
                 echo "Error: Namespace labels found."
                 exit 1
               else
