@@ -15,7 +15,7 @@ jobs:
 
     - name: Check for 'istio.io/rev'
       run: |
-        if grep -rnw -e 'istio.io/rev' .; then
+        if grep -r -q "istio.io/rev" ./*; then
           echo "Error: 'istio.io/rev' found in the files."
           exit 1
         else
