@@ -2,9 +2,9 @@ name: 'Namespace Label Check'
 on:
   pull_request:
     paths:
-      - 'clusters/**/namespace.yaml'
-      - 'clusters/**/ns*.yaml'
-      - 'clusters/**/*ns*.yaml'
+      - 'src/**/namespace.yaml'
+      - 'src/**/ns*.yaml'
+      - 'src/**/*ns*.yaml'
 
 jobs:
   check-labels:
