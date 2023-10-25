@@ -6,7 +6,7 @@ on:
       - '**'
 
 jobs:
-  check-istio-rev:
+  check-istio-label:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,3 +21,15 @@ jobs:
         else
           echo "No occurrence of 'istio.io/rev' found in the files."
         fi
+    - name: Comment on PR
+      if: steps.check-istio-labe.outputs.comment != 'No occurrence of 'istio.io/rev' found in the files.'
+      uses: actions/github-script@v5
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          github.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '${{ steps.check-istio-labe.outputs.comment }}',
+          })
