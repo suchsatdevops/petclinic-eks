@@ -21,12 +21,13 @@ jobs:
         output: ' '
 
     - name: Check for Namespace Labels
-      id: check
+      id: validate
       continue-on-error: true
       # "bash {0}" will make all commands run regardless of any one command fails
       shell: bash {0}
       run: |
         all_files="${{ steps.files.outputs.all }}"
+        echo $all_files
         if [[ ! -z "$all_files" ]];
         then
           for file in $all_files; do
