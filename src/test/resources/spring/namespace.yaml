@@ -5,4 +5,4 @@ metadata:
   name: security-prod-prisma
   labels:
     be: cloudtrust1
-    bu: security12
+    bu: security123
