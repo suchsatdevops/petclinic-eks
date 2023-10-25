@@ -16,9 +16,9 @@ jobs:
 
     - name: Identify all files in PR
       id: files
-      uses: trilom/file-changes-action@v1.2.4
-      with:
-        output: ' '
+      uses: jitterbit/get-changed-files@v1
+      # ignore error: https://github.com/jitterbit/get-changed-files/issues/11
+      continue-on-error: true
 
     - name: Check for Namespace Labels
       id: validate
