@@ -30,7 +30,7 @@ jobs:
           for file in $all_files; do
             if grep -q "kind: Namespace" "$file"; then
               if grep -q "istio.io/rev" "$file"; then
-                echo "comment::Error,istio.io/rev label found" >> $GITHUB_OUTPUT
+                echo "comment=Error,istio.io/rev label found" >> $GITHUB_OUTPUT
                 echo "Error: istio.io/rev label found in "$file"" | tee -a out.txt
               fi
             fi
