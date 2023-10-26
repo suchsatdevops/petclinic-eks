@@ -70,6 +70,7 @@ jobs:
           for file in $all_files; do
             if grep -q "kind: Namespace" "$file"; then
               if grep -q "istio.io/rev" "$file"; then
+                echo "::set-output name=comment::Error,Namespace labels found"
                 echo "Error: Namespace labels found in "$file"" | tee -a out.txt
               fi
             fi
