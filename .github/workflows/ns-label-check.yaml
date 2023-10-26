@@ -85,7 +85,6 @@ jobs:
       with:
         recreate: true
         message: |
-          if grep Error out.txt > /dev/null 2>&1; then 
           ```
           Error: Namespace labels found, please remove
           ```
