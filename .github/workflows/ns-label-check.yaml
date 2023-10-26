@@ -78,3 +78,9 @@ jobs:
             fi
           done
         fi
+
+    - name: Fail if any of istio labels present
+      run: |
+        if grep Error out.txt > /dev/null 2>&1; then 
+          exit 1
+        fi
