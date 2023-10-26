@@ -79,14 +79,13 @@ jobs:
     - name: Update comment with validation output
       run: |
         if grep Error out.txt > /dev/null 2>&1; then
-          uses: marocchino/sticky-pull-request-comment@v2
-          with:
-            recreate: true
-            message: |
-              ```
-              ${{ steps.check.outputs.result }}
-              ```
-        fi
+      uses: marocchino/sticky-pull-request-comment@v2
+      with:
+        recreate: true
+        message: |
+          ```
+          ${{ steps.check.outputs.result }}
+          ```
 
     - name: Fail if any of istio labels present
       run: |
