@@ -50,6 +50,6 @@ jobs:
       env:
         COMMENT: ${{ steps.check.outputs.comment }}
       run: |
-        if grep Error COMMENT > /dev/null 2>&1; then 
+        if grep Error $COMMENT > /dev/null 2>&1; then 
           exit 1
         fi
