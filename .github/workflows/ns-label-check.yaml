@@ -80,6 +80,17 @@ jobs:
           done
         fi
 
+    - name: Update comment with validation output
+      uses: marocchino/sticky-pull-request-comment@v2
+      with:
+        recreate: true
+        message: |
+          if grep Error out.txt > /dev/null 2>&1; then 
+              ```
+              Error: Namespace labels found, please remove
+              ```
+          fi
+
     - name: Fail if any of istio labels present
       run: |
         if grep Error out.txt > /dev/null 2>&1; then 
