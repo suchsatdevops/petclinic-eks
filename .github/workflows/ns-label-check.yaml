@@ -16,6 +16,8 @@ jobs:
     - name: Identify all files in PR
       id: files
       uses: tj-actions/changed-files@v40
+      with:
+        since_last_remote_commit: true 
       #continue-on-error: true
 
     - name: Check for istio Labels
