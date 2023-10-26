@@ -86,7 +86,7 @@ jobs:
         recreate: true
         message: |
           ```
-          Error: Namespace labels found, please remove
+          ${{ steps.check.outputs.result }}
           ```
 
     - name: Fail if any of istio labels present
