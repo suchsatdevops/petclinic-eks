@@ -4,6 +4,6 @@ kind: Namespace
 metadata:
   name: security-prod-prisma
   labels:
-    istio.io/rev: 1-14-8
+    istio.io/rev: 1-14-9
     be: cloudtrust12
     bu: security123
