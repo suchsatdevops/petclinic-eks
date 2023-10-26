@@ -16,7 +16,7 @@ jobs:
     - name: Identify all files in PR
       id: files
       uses: tj-actions/changed-files@v40
-      continue-on-error: true
+      #continue-on-error: true
 
     - name: Check for istio Labels
       id: check
