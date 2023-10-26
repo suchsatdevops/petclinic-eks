@@ -71,7 +71,6 @@ jobs:
             if grep -q "kind: Namespace" "$file"; then
               if grep -q "istio.io/rev" "$file"; then
                 echo "Error: Namespace labels found in "$file"" | tee -a out.txt
-                cat out.txt
               else
                 echo "Namespace labels not found, PR looks good"
               continue
@@ -81,15 +80,15 @@ jobs:
         fi
 
     - name: Update comment with validation output
+      if: steps.check.outputs.all != ''
       uses: marocchino/sticky-pull-request-comment@v2
       with:
         recreate: true
         message: |
           if grep Error out.txt > /dev/null 2>&1; then 
-              ```
-              Error: Namespace labels found, please remove
-              ```
-          fi
+          ```
+          Error: Namespace labels found, please remove
+          ```
 
     - name: Fail if any of istio labels present
       run: |
