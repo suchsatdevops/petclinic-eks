@@ -29,8 +29,9 @@ jobs:
         message: |
           Validation output, from ${{ github.sha }}, commit by: ${{ github.actor }}.
           ```
-          istio labels are added in namespace, please remove
+          istio labels are added in namespace, please remove.
           ```
+    
     - name: Fail if any istio label is present
       if: steps.check-istio-label.outputs.comment != 'No occurrence of ''istio.io/rev'' found in the files.'
       run: |
