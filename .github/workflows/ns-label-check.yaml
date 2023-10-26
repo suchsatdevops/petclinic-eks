@@ -1,3 +1,43 @@
+# name: Check Istio Revision
+
+# on:
+#   pull_request:
+#     paths:
+#       - '**'
+
+# jobs:
+#   check-istio-label:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - name: Checkout repository
+#       uses: actions/checkout@v4
+
+#     - name: Check for 'istio.io/rev'
+#       run: |
+#         if grep -r -q "istio.io/rev" ./*; then
+#           echo "Error: 'istio.io/rev' found in the files."
+#         else
+#           echo "No occurrence of 'istio.io/rev' found in the files."
+#         fi
+
+#     - name: Update comment with validation output
+#       if: steps.check-istio-label.outputs.comment != 'No occurrence of ''istio.io/rev'' found in the files.'
+#       uses: marocchino/sticky-pull-request-comment@v2
+#       with:
+#         recreate: true
+#         message: |
+#           Validation output, from ${{ github.sha }}, commit by: ${{ github.actor }}.
+#           ```
+#           istio labels are added in namespace, please remove.
+#           ```
+    
+#     - name: Fail if any istio label is present
+#       run: |
+#           if: steps.check-istio-label.outputs.comment != 'No occurrence of ''istio.io/rev'' found in the files.'
+#           exit 1
+#         fi
+
 name: Check Istio Revision
 
 on:
@@ -13,27 +53,29 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Check for 'istio.io/rev'
-      run: |
-        if grep -r -q "istio.io/rev" ./*; then
-          echo "Error: 'istio.io/rev' found in the files."
-        else
-          echo "No occurrence of 'istio.io/rev' found in the files."
-        fi
+    - name: Identify all files in PR
+      id: files
+      uses: jitterbit/get-changed-files@v1
+      continue-on-error: true
 
-    - name: Update comment with validation output
-      if: steps.check-istio-label.outputs.comment != 'No occurrence of ''istio.io/rev'' found in the files.'
-      uses: marocchino/sticky-pull-request-comment@v2
-      with:
-        recreate: true
-        message: |
-          Validation output, from ${{ github.sha }}, commit by: ${{ github.actor }}.
-          ```
-          istio labels are added in namespace, please remove.
-          ```
-    
-    - name: Fail if any istio label is present
+    - name: Check for Namespace Labels
+      id: check
+      continue-on-error: true
+      # "bash {0}" will make all commands run regardless of any one command fails
+      shell: bash {0}
       run: |
-          if: steps.check-istio-label.outputs.comment != 'No occurrence of ''istio.io/rev'' found in the files.'
-          exit 1
+        all_files="${{ steps.files.outputs.all }}"
+        if [[ ! -z "$all_files" ]];
+        then
+          for file in $all_files; do
+            if grep -q "kind: Namespace" "$file"; then
+              if grep -q "istio.io/rev" "$file"; then
+                echo "Error: Namespace labels found in "$file""
+                exit 1
+              else
+                echo "Namespace labels not found, PR looks good"
+              continue
+              fi
+            fi
+          done
         fi
