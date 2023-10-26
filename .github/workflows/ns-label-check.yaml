@@ -1,44 +1,4 @@
-# name: Check Istio Revision
-
-# on:
-#   pull_request:
-#     paths:
-#       - '**'
-
-# jobs:
-#   check-istio-label:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#     - name: Checkout repository
-#       uses: actions/checkout@v4
-
-#     - name: Check for 'istio.io/rev'
-#       run: |
-#         if grep -r -q "istio.io/rev" ./*; then
-#           echo "Error: 'istio.io/rev' found in the files."
-#         else
-#           echo "No occurrence of 'istio.io/rev' found in the files."
-#         fi
-
-#     - name: Update comment with validation output
-#       if: steps.check-istio-label.outputs.comment != 'No occurrence of ''istio.io/rev'' found in the files.'
-#       uses: marocchino/sticky-pull-request-comment@v2
-#       with:
-#         recreate: true
-#         message: |
-#           Validation output, from ${{ github.sha }}, commit by: ${{ github.actor }}.
-#           ```
-#           istio labels are added in namespace, please remove.
-#           ```
-    
-#     - name: Fail if any istio label is present
-#       run: |
-#           if: steps.check-istio-label.outputs.comment != 'No occurrence of ''istio.io/rev'' found in the files.'
-#           exit 1
-#         fi
-
-name: Check Istio Revision
+name: Check for istio labels in namespace
 
 on:
   pull_request:
@@ -58,7 +18,7 @@ jobs:
       uses: jitterbit/get-changed-files@v1
       continue-on-error: true
 
-    - name: Check for Namespace Labels
+    - name: Check for istio Labels
       id: check
       continue-on-error: true
       # "bash {0}" will make all commands run regardless of any one command fails
@@ -70,24 +30,24 @@ jobs:
           for file in $all_files; do
             if grep -q "kind: Namespace" "$file"; then
               if grep -q "istio.io/rev" "$file"; then
-                echo "::set-output name=comment::Error,Namespace labels found"
-                echo "Error: Namespace labels found in "$file"" | tee -a out.txt
+                echo "::set-output name=comment::Error,istio.io/rev label found"
+                echo "Error: istio.io/rev label found in "$file"" | tee -a out.txt
               fi
             fi
           done
         fi
 
-    - name: Update comment with validation output
+    - name: Update comment if istio labels found
       if: steps.check.outputs.comment
       uses: marocchino/sticky-pull-request-comment@v2
       with:
         recreate: true
         message: |
           ```
-          Error: Namespace labels found
+          Error: istio.io/rev label found, Please remove
           ```
 
-    - name: Fail if any of istio labels present
+    - name: Fail if any istio labels present
       run: |
         if grep Error out.txt > /dev/null 2>&1; then 
           exit 1
