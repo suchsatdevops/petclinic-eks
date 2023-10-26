@@ -80,7 +80,7 @@ jobs:
         fi
 
     - name: Update comment with validation output
-      if: steps.check.out.txt != ''
+      #if: steps.check.out.txt != ''
       uses: marocchino/sticky-pull-request-comment@v2
       with:
         recreate: true
