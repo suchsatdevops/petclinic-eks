@@ -15,7 +15,7 @@ jobs:
 
     - name: Identify all files in PR
       id: files
-      uses: jitterbit/get-changed-files@v1
+      uses: tj-actions/changed-files@v40
       continue-on-error: true
 
     - name: Check for istio Labels
