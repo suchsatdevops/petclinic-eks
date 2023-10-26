@@ -71,7 +71,7 @@ jobs:
             if grep -q "kind: Namespace" "$file"; then
               if grep -q "istio.io/rev" "$file"; then
                 echo "Error: Namespace labels found in "$file"" | tee -a out.txt
-                echo out.txt
+                cat out.txt
               else
                 echo "Namespace labels not found, PR looks good"
               continue
